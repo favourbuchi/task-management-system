@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+<h1 class="title">Tasks</h1>
+{% block content %}
+   
+    <div class="contain">
+            <h1 class="title">Add Task</h1>
+            <form method="post">
+                <label for="email">Task:</label>
+                <input type="text" id="task" name="task" required>
+    
+                <label for="firstName">Date:</label>
+                <input type="date" id="date" name="date" required>
+    
+                <label for="password1">Time:</label>
+                <input type="time" id="time" name="time" required>
+    
+                <button type="submit" id="submit-btn">Add Task</button>
+            </form>
+    </div>
+
+    <div class="contains">
+        <h1 class="title">Your Tasks</h1>
+        <ul class="" id="tasks">
+        {% for task in user.activities %}
+        {% if task %}
+                <li id="tasks">
+                    <div id="p-btn">
+                       <p>{{ task.data }} - {{ task.datetime }}</p>
+                    <button type="button" id="close-btn" onclick="deleteActivity({{ task.id }})">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div> 
+                </li>
+        {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
+{%endblock%}
